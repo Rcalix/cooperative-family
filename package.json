@@ -1,0 +1,38 @@
+{
+  "name": "advanced-react",
+  "version": "1.0.0",
+  "description": " Advanced React",
+  "main": "lib/server.js",
+  "author": "Rcalix",
+  "license": "MIT",
+  "scripts": {
+    "dev": "set NODE_PATH=./lib&& nodemon --exec babel-node lib/server.js",
+    "webpack": "webpack -wd",
+    "test": "jest --watch"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "env",
+      "stage-2"
+    ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.5.0",
+    "eslint-plugin-react": "^7.3.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": " ^6.24.1",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "webpack": "^3.5.5"
+  }
+}
