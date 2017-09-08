@@ -20,12 +20,13 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "enzyme": "^2.9.1",
-    "eslint": "^4.5.0",
+    "eslint": "^4.6.1",
     "eslint-plugin-react": "^7.3.0",
     "react-test-renderer": "^15.6.1"
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
@@ -34,10 +35,12 @@
     "babel-preset-stage-2": " ^6.24.1",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
-    "jest-cli": "^20.0.4",
+    "jest-cli": "^21.0.2",
+    "lodash.debounce": "^4.0.8",
+    "lodash.pickby": "^4.6.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.6"
   }
 }
