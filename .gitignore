@@ -1,4 +1,7 @@
-node_modules/*
-.vscode/*
-__snapshots__/*
-.js.snap
+node_modules/
+public/vendor.js
+public/app.js
+coverage/
+build/
+config/
+.vscode/

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ArticleList Renders correctly 1`] = `
+exports[`ArticleList renders correctly 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],
@@ -10,60 +10,60 @@ ShallowWrapper {
   "length": 1,
   "node": <div>
     <ArticleContainer
-      article={
-        Object {
-          "id": "a",
+        article={
+            Object {
+                "id": "a",
+              }
         }
-      }
     />
     <ArticleContainer
-      article={
-        Object {
-          "id": "b",
+        article={
+            Object {
+                "id": "b",
+              }
         }
-      }
     />
-  </div>,
+</div>,
   "nodes": Array [
     <div>
       <ArticleContainer
-        article={
-          Object {
-            "id": "a",
-          }
-        }
+            article={
+                  Object {
+                        "id": "a",
+                      }
+            }
       />
       <ArticleContainer
-        article={
-          Object {
-            "id": "b",
-          }
-        }
+            article={
+                  Object {
+                        "id": "b",
+                      }
+            }
       />
-    </div>,
+</div>,
   ],
   "options": Object {},
   "renderer": ReactShallowRenderer {
     "_instance": ShallowComponentWrapper {
       "_calledComponentWillUnmount": false,
-      "_compositeType": 2,
+      "_compositeType": 1,
       "_context": Object {},
       "_currentElement": <ArticleList
         articles={
-          Object {
-            "a": Object {
-              "id": "a",
-            },
-            "b": Object {
-              "id": "b",
-            },
-          }
+                Object {
+                        "a": Object {
+                          "id": "a",
+                        },
+                        "b": Object {
+                          "id": "b",
+                        },
+                      }
         }
-      />,
+/>,
       "_debugID": 1,
       "_hostContainerInfo": null,
       "_hostParent": null,
-      "_instance": StatelessComponent {
+      "_instance": ArticleList {
         "_reactInternalInstance": [Circular],
         "context": Object {},
         "props": Object {
@@ -98,37 +98,37 @@ ShallowWrapper {
       "_renderedComponent": NoopInternalComponent {
         "_currentElement": <div>
           <ArticleContainer
-            article={
-              Object {
-                "id": "a",
-              }
-            }
+                    article={
+                              Object {
+                                        "id": "a",
+                                      }
+                    }
           />
           <ArticleContainer
-            article={
-              Object {
-                "id": "b",
-              }
-            }
+                    article={
+                              Object {
+                                        "id": "b",
+                                      }
+                    }
           />
-        </div>,
+</div>,
         "_debugID": 2,
         "_renderedOutput": <div>
           <ArticleContainer
-            article={
-              Object {
-                "id": "a",
-              }
-            }
+                    article={
+                              Object {
+                                        "id": "a",
+                                      }
+                    }
           />
           <ArticleContainer
-            article={
-              Object {
-                "id": "b",
-              }
-            }
+                    article={
+                              Object {
+                                        "id": "b",
+                                      }
+                    }
           />
-        </div>,
+</div>,
       },
       "_renderedNodeType": 0,
       "_rootNodeID": 0,
@@ -142,15 +142,15 @@ ShallowWrapper {
   "root": [Circular],
   "unrendered": <ArticleList
     articles={
-      Object {
-        "a": Object {
-          "id": "a",
-        },
-        "b": Object {
-          "id": "b",
-        },
-      }
+        Object {
+            "a": Object {
+              "id": "a",
+            },
+            "b": Object {
+              "id": "b",
+            },
+          }
     }
-  />,
+/>,
 }
 `;

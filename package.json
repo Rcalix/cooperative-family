@@ -1,46 +1,72 @@
 {
-  "name": "advanced-react",
+  "name": "Cooperative",
   "version": "1.0.0",
-  "description": " Advanced React",
+  "description": "Cooperative stadistic",
   "main": "lib/server.js",
-  "author": "Rcalix",
+  "author": "Ramon Calix",
   "license": "MIT",
   "scripts": {
     "dev": "set NODE_PATH=./lib&& nodemon --exec babel-node lib/server.js",
     "webpack": "webpack -wd",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "verify-tests": "jest --coverage",
+    "build-webpack": "webpack -p",
+    "build-node": "babel lib -d build --copy-files",
+    "start-prod": "NODE_ENV=production NODE_PATH=./build pm2 start build/server.js -i max --name appProd"
   },
   "babel": {
     "presets": [
       "react",
-      "env",
-      "stage-2"
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-class-properties",
+      "transform-object-rest-spread"
     ]
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "babel-plugin-import": "^1.6.0",
     "enzyme": "^2.9.1",
-    "eslint": "^4.6.1",
-    "eslint-plugin-react": "^7.3.0",
+    "eslint": "^4.1.0",
+    "eslint-plugin-react": "^7.1.0",
+    "jest": "^20.0.4",
     "react-test-renderer": "^15.6.1"
   },
   "dependencies": {
+    "antd": "^2.13.4",
     "axios": "^0.16.2",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-loader": "^7.1.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": " ^6.24.1",
-    "ejs": "^2.5.7",
-    "express": "^4.15.4",
-    "jest-cli": "^21.0.2",
+    "babel-preset-stage-2": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "fs": "^0.0.1-security",
     "lodash.debounce": "^4.0.8",
     "lodash.pickby": "^4.6.0",
+    "path": "^0.12.7",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
+    "pm2": "^2.5.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-addons-perf": "^15.4.2",
     "react-dom": "^15.6.1",
-    "webpack": "^3.5.6"
+    "sequelize": "^4.13.5",
+    "sequelize-cli": "^3.0.0",
+    "serve-favicon": "^2.4.5",
+    "webpack": "^3.0.0"
   }
 }
