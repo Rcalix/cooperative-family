@@ -4,6 +4,9 @@
   "description": "Cooperative stadistic",
   "main": "lib/server.js",
   "author": "Ramon Calix",
+  "engines": {
+    "node": "8.4.0 "
+  },
   "license": "MIT",
   "scripts": {
     "dev": "set NODE_PATH=./lib&& nodemon --exec babel-node lib/server.js",
