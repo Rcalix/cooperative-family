@@ -2,6 +2,5 @@ node_modules/
 public/vendor.js
 public/app.js
 coverage/
-build/
 config/
 .vscode/
