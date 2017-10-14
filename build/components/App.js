@@ -14,26 +14,37 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _semanticUiReact = require('semantic-ui-react');
 
+var _reactRouterDom = require('react-router-dom');
+
 var _cards = require('./cards');
 
 var _cards2 = _interopRequireDefault(_cards);
+
+var _User = require('./user/User');
+
+var _User2 = _interopRequireDefault(_User);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class App extends _react2.default.Component {
   render() {
     return _react2.default.createElement(
-      'div',
+      _reactRouterDom.HashRouter,
       null,
       _react2.default.createElement(
-        _semanticUiReact.Segment,
-        { inverted: true },
-        'Cooperative'
-      ),
-      _react2.default.createElement(
-        _semanticUiReact.Container,
+        'div',
         null,
-        _react2.default.createElement(_cards2.default, null)
+        _react2.default.createElement(
+          _semanticUiReact.Segment,
+          { inverted: true },
+          'Cooperative'
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.Container,
+          null,
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _cards2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/user', component: _User2.default })
+        )
       )
     );
   }
