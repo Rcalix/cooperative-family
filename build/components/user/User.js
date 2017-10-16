@@ -8,13 +8,23 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = require('react-redux');
+
+var _redux = require('redux');
+
+var _userActions = require('../../actions/userActions');
+
+var userActions = _interopRequireWildcard(_userActions);
+
 var _UserForm = require('./UserForm');
 
 var _UserForm2 = _interopRequireDefault(_UserForm);
 
-var _axios = require('axios');
+var _UserList = require('./UserList');
 
-var _axios2 = _interopRequireDefault(_axios);
+var _UserList2 = _interopRequireDefault(_UserList);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41,17 +51,17 @@ class User extends _react2.default.Component {
     this.formIsValid = () => {
       let errors = [];
       let valid = true;
-      if (!this.state.user.nombre || !isNaN(this.state.user.nombre)) {
+      if (!this.state.user.fullName || !isNaN(this.state.user.fullName)) {
         errors.push('El nombre no puede ser vacio o un numero');
         valid = false;
       }
 
       if (!this.validateEmail(this.state.user.email)) {
-        errors.push('El email no puede ser o no esta bien formado');
+        errors.push('El email no puede que este vacio o no esta bien formado');
         valid = false;
       }
 
-      if (!this.state.user.telefono || isNaN(this.state.user.telefono)) {
+      if (!this.state.user.numeroTelefono || isNaN(this.state.user.numeroTelefono)) {
         errors.push('El telefono no puede ser vacio o leras');
         valid = false;
       }
@@ -74,37 +84,74 @@ class User extends _react2.default.Component {
       if (!this.formIsValid()) {
         return;
       }
-      // console.log(this.state.user);
-
-      // axios.post('http://localhost:8080/api/user', {
-      //   name: this.state.user.nombre,
-      //   email: this.state.user.email,
-      //   number: this.state.user.telefono,
-      //   direccion: this.state.user.direccion,
-      //   identidad: this.state.user.identidad
-      // }).then(function (response) {
-      //   console.log(response);
-      // }).catch(function (error) {
-      //   console.log(error);
-      // });
+      this.props.actions.saveUser(this.state.user).then(() => {
+        this.setState({ success: true });
+      }).catch(error => {
+        // console.log(error);
+      });
     };
 
     this.state = {
       user: Object.assign({}, props.user),
+      users: [],
+      success: false,
       errors: []
     };
     this.saveUser = this.saveUser.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.clear = this.clear.bind(this);
   }
-  componentDidMount() {}
 
-  render() {
-    return _react2.default.createElement(_UserForm2.default, {
-      onSave: this.saveUser,
-      onChange: this.updateUser,
-      onErrors: this.state.errors
+  componentWillReceiveProps(nextProps) {
+    let newUsers = [];
+    if (this.props.users.data) {
+      let usersExist = this.props.users.data.filter(function (user) {
+        return user.identidad == nextProps.users[0].identidad;
+      });
+      if (usersExist.length === 0) {
+        newUsers = this.props.users.data;
+        newUsers.push(nextProps.users[0]);
+        this.setState({ users: newUsers });
+      }
+    }
+  }
+  componentDidMount() {
+    this.props.actions.loadUsers().then(() => {}).catch(error => {
+      console.log(error);
     });
+  }
+  clear() {
+    const clearUser = { fullName: '', email: '', numeroTelefono: '', direccion: '', identidad: '' };
+    this.setState({ user: clearUser });
+  }
+  render() {
+    return _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(_UserForm2.default, {
+        onSave: this.saveUser,
+        onChange: this.updateUser,
+        onErrors: this.state.errors,
+        onSuccess: this.state.success,
+        onClear: this.clear,
+        onValue: this.state.user
+      }),
+      this.props.users.data && this.state.users.length == 0 && _react2.default.createElement(_UserList2.default, { data: this.props.users.data }),
+      this.state.users.length > 0 && _react2.default.createElement(_UserList2.default, { data: this.state.users })
+    );
   }
 }
 
-exports.default = User;
+function mapStateToProps(state) {
+  return {
+    users: state.users
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: (0, _redux.bindActionCreators)(userActions, dispatch)
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(User);
