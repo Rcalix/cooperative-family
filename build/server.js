@@ -4,29 +4,32 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _config = require('./config');
+var _config = require('config');
 
 var _config2 = _interopRequireDefault(_config);
-
-var _index = require('./routes/index');
-
-var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var favicon = require('serve-favicon');
+// import routes from './routes/index';
+
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var db = require('./models');
+// var db = require('./models');
 const app = (0, _express2.default)();
 
 app.set('view engine', 'ejs');
 app.use(_express2.default.static('public'));
-db.sequelize.authenticate().then(() => {
-  console.log('Connection has been established successfully.');
-}).catch(err => {
-  console.error('Unable to connect to the database:', err);
-});
+console.log(_config2.default.get('enviroment'));
+// db.
+//   sequelize
+//   .authenticate()
+//   .then(() => {
+//     console.log('Connection has been established successfully.');
+//   })
+//   .catch(err => {
+//     console.error('Unable to connect to the database:', err); 
+//   });
 
 // db.Aportacion.belongsTo(db.User, {foreignKey: 'identidad'});
 
@@ -34,7 +37,7 @@ db.sequelize.authenticate().then(() => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/api', _index2.default);
+// app.use('/api', routes);
 // db.Aportacions.belongsTo(db.Users, {foreignKey: 'identidad'});
 
 app.get('/', async (req, res) => {
@@ -42,12 +45,11 @@ app.get('/', async (req, res) => {
   res.render('index');
 });
 
-// app.use(function(req, res, next) {
-//   var err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
-
+app.use(function (req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
 app.listen(_config2.default.port, function listenHandler() {
   console.info(`Running on ${_config2.default.port}...`);
