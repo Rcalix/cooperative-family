@@ -53,6 +53,6 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-app.listen(_config4.default.port, function listenHandler() {
-  console.info(`Running on ${_config4.default.port}...`);
+app.listen('8080', function listenHandler() {
+  console.info(`Running on ...`);
 });

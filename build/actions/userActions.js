@@ -47,14 +47,13 @@ function loadUsers() {
 
 function saveUser(user) {
   return function (dispatch, getState) {
-    return _axios2.default.post(urBase + 'api/' + 'users', {
+    return _axios2.default.post(urBase + 'api/' + 'user', {
       name: user.fullName,
       email: user.email,
       number: user.numeroTelefono,
       direccion: user.direccion,
       identidad: user.identidad
     }).then(() => {
-      // console.log(user);
       dispatch(createUser(user));
     }).catch(error => {
       throw error;
