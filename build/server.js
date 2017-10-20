@@ -12,13 +12,8 @@ var _config = require('config');
 
 var _config2 = _interopRequireDefault(_config);
 
-var _config3 = require('./config');
-
-var _config4 = _interopRequireDefault(_config3);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var db = require('./models');
@@ -53,6 +48,6 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-app.listen('8080', function listenHandler() {
+app.listen(process.env.PORT || 5000, function listenHandler() {
   console.info(`Running on ...`);
 });
