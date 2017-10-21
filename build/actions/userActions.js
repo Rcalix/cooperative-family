@@ -20,6 +20,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+let urBase;
+if (ENV === 'development') {
+  urBase = 'http://localhost:8080/';
+} else if (ENV === 'production') {
+  urBase = 'https://control-cooperative.herokuapp.com/';
+}
+
 function loadUsersSucces(users) {
   return { type: types.LOAD_USERS_SUCCESS, users };
 }
@@ -30,7 +37,7 @@ function createUser(users) {
 
 function loadUsers() {
   return function (dispatch) {
-    return _axios2.default.get('http://localhost:8080/api/users').then(users => {
+    return _axios2.default.get(urBase + 'api/' + 'users').then(users => {
       dispatch(loadUsersSucces(users));
     }).catch(error => {
       throw error;
@@ -40,14 +47,13 @@ function loadUsers() {
 
 function saveUser(user) {
   return function (dispatch, getState) {
-    return _axios2.default.post('http://localhost:8080/api/user', {
+    return _axios2.default.post(urBase + 'api/' + 'user', {
       name: user.fullName,
       email: user.email,
       number: user.numeroTelefono,
       direccion: user.direccion,
       identidad: user.identidad
     }).then(() => {
-      // console.log(user);
       dispatch(createUser(user));
     }).catch(error => {
       throw error;

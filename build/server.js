@@ -4,17 +4,16 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _config = require('./config');
-
-var _config2 = _interopRequireDefault(_config);
-
 var _index = require('./routes/index');
 
 var _index2 = _interopRequireDefault(_index);
 
+var _config = require('config');
+
+var _config2 = _interopRequireDefault(_config);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var db = require('./models');
@@ -22,6 +21,7 @@ const app = (0, _express2.default)();
 
 app.set('view engine', 'ejs');
 app.use(_express2.default.static('public'));
+console.log(_config2.default.get('enviroment'));
 db.sequelize.authenticate().then(() => {
   console.log('Connection has been established successfully.');
 }).catch(err => {
@@ -42,13 +42,12 @@ app.get('/', async (req, res) => {
   res.render('index');
 });
 
-// app.use(function(req, res, next) {
-//   var err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
+app.use(function (req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
-
-app.listen(_config2.default.port, function listenHandler() {
-  console.info(`Running on ${_config2.default.port}...`);
+app.listen(process.env.PORT || 5000, function listenHandler() {
+  console.info(`Running on ...`);
 });
