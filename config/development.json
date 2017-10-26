@@ -1,6 +1,6 @@
 {
     "enviroment": "development",
-    "urlBase": "http://localhost:8080/",
+    "urlBase": "http://localhost:5000/",
     "username": "dcjjarmmxunjsn",
     "password": "f71bae1ec98850e679e801dd2b57309a6bd7ebd8ca3c79095a457e768c890dc5",
     "database": "d8ao9gm59s083",
