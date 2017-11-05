@@ -62,6 +62,7 @@
     "fs": "^0.0.1-security",
     "lodash.debounce": "^4.0.8",
     "lodash.pickby": "^4.6.0",
+    "nodemon": "^1.12.1",
     "path": "^0.12.7",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
